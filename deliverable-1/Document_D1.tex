@@ -1,0 +1,88 @@
+\documentclass[11pt]{article}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage[english]{babel}
+\usepackage{apacite}
+
+\begin{document}
+\title{Software Measurement (SOEN6611)\\Summer 2018\\Team J\\Deliverable 1}
+\author{Yousef Saatchi Tabriz}
+\date{}
+\maketitle
+
+\tableofcontents
+
+\newpage
+\section{First section}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. \cite{microsoft3}. 
+
+\subsection{First subsection}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+\begin{figure}[h]
+	\centering
+		\includegraphics[]{Packages.png}
+	\caption{Structure of directories}
+	\label{fig:packages}
+\end{figure}
+ 
+\section{Second section}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\begin{quote}
+   “Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.” \cite{c4}.
+\end{quote}
+
+\subsection{First subsection}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+$$ a_0 = 1 b_0 = \frac{1}{\sqrt{2}} t_0 = \frac{1}{4} p_0 = 1$$
+$$a_{n+1} = \frac{a_n + b_n}{2}, $$
+$$b_{n+1} = \sqrt{a_nb_n}, $$
+$$t_{n+1} = t_n - p_n(a_n - a_{n+1})^2, $$
+$$p_{n+1} = 2p_n. $$
+Then:
+$$\pi \approx \frac{(a_{n+1} + b_{n+1})^2}{4t_{n+1}}$$
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+$$\pi = \sum_{k=0}^{\infty} [\frac{1}{16^k}(\frac{4}{8k+1} -\frac{2}{8k+4} - \frac{1}{8k+5} - \frac{1}{8k+6})] $$
+
+\subsubsection{First subsubsection}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+\begin{algorithm}
+\caption{BBP Algorithm}
+\begin{algorithmic}
+\STATE $precision \leftarrow $ precision of calculation
+\STATE $calculated\_pi \leftarrow 0$
+\STATE \emph{loop}:${ k} \leftarrow $ precision to 0 step -1
+\STATE $eight\_k \leftarrow 8 * k$
+\STATE $base\_sixteen\_factor \leftarrow \frac{1}{16^i}$
+\STATE $calculated\_pi \leftarrow base\_sixteen\_factor * (\frac{4}{eight\_k+1} - \frac{2}{eight\_k+4}- \frac{1}{eight\_k+5} - \frac{1}{eight\_k+6})$
+\STATE end loop
+\STATE return calculated\_pi
+\end{algorithmic}
+\end{algorithm}
+
+\begin{lstlisting}[language=python]
+class GregoryLeibniz(AlgorithmBase):
+	def calculate(precision):
+		"""Implementation of the algorithm goes here"""
+\end{lstlisting}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+\begin{lstlisting}[language=python]
+ALGORITHMS = {
+    0: BBP,
+    1: GregoryLeibniz,
+}
+
+class AlgorithmType(Enum):
+    BBP = 0
+    GregoryLeibniz = 1
+\end{lstlisting}
+
+\bibliographystyle{apacite}
+\bibliography{references}
+
+\end{document}
