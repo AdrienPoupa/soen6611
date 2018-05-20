@@ -14,8 +14,6 @@ sizeoflist <- function(list) {
 
 median <- function(list) {
   size <- sizeoflist (list)
-  print(size)
-  print(list)
     
   if(size %% 2 == 1) {
       return (list[[size/2+1]])
