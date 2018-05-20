@@ -2,9 +2,18 @@
 #Author: Farhan Shaheen
 #Median function in R
 #May 2018
+
+sizeoflist <- function(list) {
+  s <- 0
   
+  for(i in list){
+    s <- s + 1
+  }
+  return (s)
+}
+
 median <- function(list) {
-  size <- length(list)
+  size <- sizeoflist (list)
   print(size)
   print(list)
     
@@ -16,7 +25,7 @@ median <- function(list) {
   }
 }
 
-data <- c(1:7)
+data <- c(1:6)
 median(data)
-data <- c(2:7)
+data <- c(2:6)
 median(data)
