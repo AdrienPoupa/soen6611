@@ -7,8 +7,6 @@
 
 source("sqrt.r")
 
-source("min.r")
-
 source("sum.r")
 
 source("median.r")
