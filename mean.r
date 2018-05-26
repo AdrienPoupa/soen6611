@@ -3,7 +3,7 @@
 #Mean function in R
 #May 2018
 
-source("median.r")
+source("sizeoflist.r")
 
 mean_custom <- function(list) {
   counter <- 0

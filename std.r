@@ -13,6 +13,8 @@ source("median.r")
 
 source("mean.r")
 
+source("sizeoflist.r")
+
 std <- function(list) {
     return(square_root(sum_custom((list - mean_custom(list))^2) / (sizeoflist(list) - 1)))
 }
