@@ -1,6 +1,6 @@
 #R version 3.3.2 
 #Author: Farhan Shaheen
-#Median function in R
+#List Size function in R
 #May 2018
 
 sizeoflist <- function(list) {
