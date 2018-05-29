@@ -31,23 +31,21 @@ set_stddev <- function(stddev){
 	sd <- stddev
 }
 #getters
-get_min <- funtion(){
-	return m
+get_min <- function(){
+	return(m)
 }
-get_max <- funtion(){
-	return Mx
+get_max <- function(){
+	return(Mx)
 }
-get_mode <- funtion(){
-	return o
+get_mode <- function(){
+	return(o)
 }
-get_median <- funtion(){
-	return d
+get_median <- function(){
+	return(d)
 }
-get_mean <- funtion(){
-	return mu
+get_mean <- function(){
+	return(mu)
 }
-get_sd <- funtion(){
-	return sd
+get_sd <- function(){
+	return(sd)
 }
-
-
