@@ -1,9 +1,0 @@
-X <- runif(100,0,100)
-DSMean = 0
-for (i in 1:NROW(X))
-{
-  DSMean <- DSMean + X[i]
-}
-DSMean = DSMean/NROW(X)
-DSMean
-mean(X)   
