@@ -3,8 +3,10 @@
 #Returns most frequent number in array
 #May 2018
 
-mode <- function(array, n) {
+mode <- function(array) {
 
+  n <- sizeoflist(array)
+  sortedArray <- radixsort(array, n)
   max <- 1
   currentAmount <- 1
   n <- n-1
@@ -24,6 +26,7 @@ mode <- function(array, n) {
       }
       currentAmount <- 1
     }
+    print(paste0("currentAmount: ", currentAmount))
   }
   
   if (currentAmount == max)
@@ -31,12 +34,10 @@ mode <- function(array, n) {
   if (currentAmount > max) 
     modeRes <- array[i]
   
+  print(max)
   return (modeRes)
 }
 
 
-array <- c(1,2,2,2,2,3,3,3,4,4,4,4)
-n <- sizeoflist(array)
-sortedArray <- radixsort(array, n)
-mode(sortedArray, n)
-
+array <- c(93,45,75,96,80,45,2,66)
+mode(array)
