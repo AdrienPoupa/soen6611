@@ -3,18 +3,20 @@
 #Radix Sort in R
 #May 2018
 
-source("sizeoflist.r")
-  
-getmax <- function(list, n){
+ds_list <- setRefClass("ds_list",
+fields = list(items = "vector"),
+methods = list(
+
+getmax = function(list, n){
     max = list[[1]]
     for(i in 2:n){
         if(list[[i]] > max)
             max = list[[i]];
     }
     return (max)
-}
+},
 
-countsort <- function(list, n, digitno){
+countsort = function(list, n, digitno){
     outputlist <- c(1:n)
     i <- 0
     count <- c(0,0,0,0,0,0,0,0,0,0)
@@ -36,20 +38,17 @@ countsort <- function(list, n, digitno){
         count[[k]] <- count[[k]] - 1
     }
     return (outputlist)
-}
+},
 
-radixsort <- function(list,n){
+sort = function(){
     # find maximun number from the list
-    max = getmax(list, n)
+    item_length = length(items)
+    max = getmax(items, item_length)
     j <- 1
     for(digitno in 1:(max/j)){
-        list <- countsort(list, n, digitno)
+        items <<- countsort(items, item_length, digitno)
         j <- j + 1
     }
-    return (list)
 }
-
-list <- c(93, 45, 75, 96, 80, 24, 2, 66)
-n <- sizeoflist(list)
-s <- radixsort(list, n)
-print(s)
+)
+)
