@@ -7,18 +7,18 @@
 source("DescriptiveStatistics.r")
 source("data.r")
 
-list <- c(93, 45, 75, 96, 80, 24, 2, 66)
-data <- c(93, 45, 75, 96, 80, 45, 2, 66)
-d <- read_csv("data.csv", col_types = cols(data = col_double()))
-sizeoflist(d)
+list <- read.csv("data.csv",header=F)$V1
+n <- length(list)
+#array <- radixsort(array, n)
 
 max_custom(list)
 min_custom(list)
 mean_custom(list)
-median(data)
+median(list)
 
-#mode(data)
+mode(list)
+
 #standard deviation
-std(data)
+std(list)
 
 print(paste0("median: ", get_median()))

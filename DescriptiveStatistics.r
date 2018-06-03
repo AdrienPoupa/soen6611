@@ -52,11 +52,12 @@ median <- function(list) {
 
 mean_custom <- function(list) {
   counter <- 0
-  
-  for(i in list){
-    counter <- counter + i
+
+  for(i in 1:length(list)){
+    counter <- counter + list[[i]]
   }
-  value <- counter/sizeoflist (list)
+
+  value <- counter/length(list)
 	set_mean(value)
   return (value)
 }
@@ -69,7 +70,7 @@ std <- function(list) {
 
 mode <- function(array) {
   
-  sortedArray <- radixsort(array, n)
+  n <- length(array)
   max <- 1
   currentAmount <- 1
   n <- n-1
@@ -96,6 +97,53 @@ mode <- function(array) {
   if (currentAmount > max) 
     modeRes <- array[i]
   
-  print("modeRes")
   return (modeRes)
 }
+
+################
+getmax <- function(list, n){
+  max = list[[1]]
+  for(i in 2:n){
+    if(list[[i]] > max)
+      max = list[[i]];
+  }
+  return (max)
+}
+
+countsort <- function(list, n, digitno){
+  outputlist <- c(1:n)
+  i <- 0
+  count <- c(0,0,0,0,0,0,0,0,0,0)
+  
+  # count didgit occurences
+  for(i in 1:n){
+    j <- ((list[[i]]/digitno) %% 10) + 1 
+    count[[j]] <- count[[j]] + 1 
+  }
+  
+  for(i in 2:10){
+    count[[i]] <- count[[i]] + count[[i-1]] 
+  }
+  
+  for(i in n:1){
+    k <- ((list[[i]]/digitno) %% 10) + 1
+    l <- count[[k]]
+    outputlist[[l]] <- list[[i]]
+    count[[k]] <- count[[k]] - 1
+  }
+  return (outputlist)
+}
+
+radixsort <- function(list,n){
+  # find maximun number from the list
+  max = getmax(list, n)
+  j <- 1
+  for(digitno in 1:(max/j)){
+    list <- countsort(list, n, digitno)
+    j <- j + 1
+  }
+  return (list)
+}
+
+
+
