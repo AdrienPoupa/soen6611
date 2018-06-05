@@ -5,20 +5,25 @@
 #May-June 2018
 
 source("DescriptiveStatistics.r")
-source("data.r")
+source("data_provider.r")
 
-list <- read.csv("data.csv",header=F)$V1
-n <- length(list)
-#array <- radixsort(array, n)
+dp <- data_provider()
+random_grades <- dp$get_random_numbers()
 
-max_custom(list)
-min_custom(list)
-mean_custom(list)
-median(list)
+ds <- descriptive_statistics(grades = random_grades)
 
-mode(list)
+max_grade <- ds$max_grade()
+min_grade <- ds$min_grade()
+grades_mean <- ds$grades_mean()
+grades_median <- ds$grades_median()
+grades_mode <- ds$grades_mode()
 
 #standard deviation
-std(list)
+std_dev <- ds$grades_std_dev()
 
-print(paste0("median: ", get_median()))
+print(paste0("maximum grade: ", max_grade))
+print(paste0("minimum grade: ", min_grade))
+print(paste0("grades mean: ", grades_mean))
+print(paste0("grades median: ", grades_median))
+print(paste0("grades mode: ", grades_mode))
+print(paste0("grades standard deviation: ", std_dev))

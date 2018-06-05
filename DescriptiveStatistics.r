@@ -4,146 +4,114 @@
 #Descriptive Statistics
 #May-June 2018
 
-source("sizeoflist.r")
 source("sqrt.r")
-source("sum.r")
-source("radix.r")
-source("data.r")
+source("ds_list.r")
 
-max_custom <- function(array) {
-  value = array[[1]]
+descriptive_statistics <- setRefClass("descriptive_statistics", 
+fields = list(grades = "ds_list"),
+methods = list(
+  max_grade = function() {
+    value = grades$items[[1]]
   
-  for(i in array) {
-    if (i > value) {
-      value = i
-    }
-  }
-	set_max(value)
-  return (value)
-}
-
-min_custom <- function(array) {
-  value = array[[1]]
-  
-  for(i in array) {
-    if (i < value) {
-      value = i
-    }
-  }
-set_min(value)
-  return (value)
-}
-
-median <- function(list) {
-	size <- sizeoflist (list)
-	list <- radixsort (list, size)
-	
-	if(size %% 2 == 1) {
-		value <- list[[size/2+1]]
-		set_median(value)
-		return (value)
-	}
-	else{
-		value <- (list[[size/2]]+list[[size/2+1]])/2
-		set_median(value)
-		return (value)    
-	}
-}
-
-mean_custom <- function(list) {
-  counter <- 0
-
-  for(i in 1:length(list)){
-    counter <- counter + list[[i]]
-  }
-
-  value <- counter/length(list)
-	set_mean(value)
-  return (value)
-}
-
-std <- function(list) {
-	value <- square_root(sum_custom((list - mean_custom(list))^2) / (sizeoflist(list) - 1))
-	set_stddev(value)
-    return(value)
-}
-
-mode <- function(array) {
-  
-  n <- length(array)
-  max <- 1
-  currentAmount <- 1
-  n <- n-1
-  modeRes <- c()
-  
-  for (i in c(1:n)) {
-    if (array[i]==array[i+1]){
-      currentAmount <- currentAmount+1
-    }
-    else {
-      if(currentAmount == max) {
-        modeRes <- c(modeRes, array[i])
+    for(i in grades$items) {
+      if (i > value) {
+        value = i
       }
-      if (currentAmount > max) {
-        max <- currentAmount
-        modeRes <- array[i]
-      }
-      currentAmount <- 1
     }
-  }
-  
-  if (currentAmount == max)
-    modeRes <- c(modeRes, array[n+1])
-  if (currentAmount > max) 
-    modeRes <- array[i]
-  
-  return (modeRes)
-}
+    
+    return (value)
+  },
 
-################
-getmax <- function(list, n){
-  max = list[[1]]
-  for(i in 2:n){
-    if(list[[i]] > max)
-      max = list[[i]];
-  }
-  return (max)
-}
+  min_grade = function() {
+    value = grades$items[[1]]
+    
+    for(i in grades$items) {
+      if (i < value) {
+        value = i
+      }
+    }
 
-countsort <- function(list, n, digitno){
-  outputlist <- c(1:n)
-  i <- 0
-  count <- c(0,0,0,0,0,0,0,0,0,0)
-  
-  # count didgit occurences
-  for(i in 1:n){
-    j <- ((list[[i]]/digitno) %% 10) + 1 
-    count[[j]] <- count[[j]] + 1 
-  }
-  
-  for(i in 2:10){
-    count[[i]] <- count[[i]] + count[[i-1]] 
-  }
-  
-  for(i in n:1){
-    k <- ((list[[i]]/digitno) %% 10) + 1
-    l <- count[[k]]
-    outputlist[[l]] <- list[[i]]
-    count[[k]] <- count[[k]] - 1
-  }
-  return (outputlist)
-}
+    return (value)
+  },
 
-radixsort <- function(list,n){
-  # find maximun number from the list
-  max = getmax(list, n)
-  j <- 1
-  for(digitno in 1:(max/j)){
-    list <- countsort(list, n, digitno)
-    j <- j + 1
+  grades_median = function() {
+    grades$sort()
+    size <- grades$size()
+    
+    if(size %% 2 == 1) {
+      value <- grades$items[[size / 2 + 1]]
+      return (value)
+    }
+    else{
+      value <- (grades$items[[size / 2]] + grades$items[[size / 2 + 1 ]]) / 2
+
+      return (value)    
+    }
+  },
+
+  grades_mean = function() {
+    counter <- 0
+
+    size <- grades$size()
+
+    for(i in 1:size){
+      counter <- counter + grades$items[[i]]
+    }
+
+    value <- counter/size
+
+    return (value)
+  },
+
+  sum_custom = function(list) {
+    sum <- 0
+    
+    for(item in list){
+      sum <- sum + item
+    }
+
+    return (sum)
+  },
+
+  grades_std_dev = function() {
+    math <- math_util()
+
+    mean <- grades_mean()
+
+    std_dev <- math$square_root(sum_custom((grades$items - mean)^2) / grades$size())
+	  
+    return(std_dev)
+  },
+
+  grades_mode = function() {
+    n <- grades$size()
+    max <- 1
+    currentAmount <- 1
+    n <- n-1
+    modeRes <- c()
+    
+    for (i in c(1:n)) {
+      if (grades$items[i] == grades$items[i + 1]) {
+        currentAmount <- currentAmount+1
+      }
+      else {
+        if(currentAmount == max) {
+          modeRes <- c(modeRes, grades$items[i])
+        }
+        if (currentAmount > max) {
+          max <- currentAmount
+          modeRes <- grades$items[i]
+        }
+        currentAmount <- 1
+      }
+    }
+    
+    if (currentAmount == max)
+      modeRes <- c(modeRes, grades$items[n+1])
+    if (currentAmount > max) 
+      modeRes <- grades$items[i]
+    
+    return (modeRes)
   }
-  return (list)
-}
-
-
-
+)
+)

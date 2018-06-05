@@ -1,5 +1,5 @@
 #R version 3.3.2 
-#Author: Farhan Shaheen
+#Author: Group J
 #Radix Sort in R
 #May 2018
 
@@ -49,6 +49,9 @@ sort = function(){
         items <<- countsort(items, item_length, digitno)
         j <- j + 1
     }
+},
+size = function(){
+    return (length(items))
 }
 )
 )
