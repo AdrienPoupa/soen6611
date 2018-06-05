@@ -4,7 +4,7 @@
 #Descriptive Statistics
 #May-June 2018
 
-source("sqrt.r")
+source("math_util.r")
 source("ds_list.r")
 
 descriptive_statistics <- setRefClass("descriptive_statistics", 

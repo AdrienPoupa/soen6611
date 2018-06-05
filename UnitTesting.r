@@ -3,7 +3,7 @@
 #Unit Testing in R
 #June 2018
 
-source("DescriptiveStatistics.r")
+source("descriptive_statistics.r")
 source("data.r")
 
 list <- read.csv("data.csv",header=F)$V1

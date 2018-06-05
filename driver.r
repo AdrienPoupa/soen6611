@@ -4,7 +4,7 @@
 #Driver
 #May-June 2018
 
-source("DescriptiveStatistics.r")
+source("descriptive_statistics.r")
 source("data_provider.r")
 
 dp <- data_provider()

@@ -1,8 +1,5 @@
-#source("DescriptiveStatistics.r")
-source("ds_list.r")
 
-# s <- descriptive_statistics(numbers = array(1:4, dim=c(4)))
-# s$print_data()
+source("ds_list.r")
 
 list <- c(93, 45, 75, 96, 80, 24, 2, 66)
 
