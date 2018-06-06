@@ -89,6 +89,8 @@ methods = list(
     currentAmount <- 1
     n <- n-1
     modeRes <- c()
+    mode_size <- 0
+    uniq_amount <- 1
     
     for (i in c(1:n)) {
       if (grades$items[i] == grades$items[i + 1]) {
@@ -97,19 +99,30 @@ methods = list(
       else {
         if(currentAmount == max) {
           modeRes <- c(modeRes, grades$items[i])
+          mode_size <- mode_size+1
         }
         if (currentAmount > max) {
           max <- currentAmount
           modeRes <- grades$items[i]
+          mode_size <- 1
         }
         currentAmount <- 1
+        uniq_amount <- uniq_amount+1
       }
     }
     
-    if (currentAmount == max)
+    if (currentAmount == max) {
       modeRes <- c(modeRes, grades$items[n+1])
-    if (currentAmount > max) 
+      mode_size <- mode_size+1
+    }
+    
+    if (currentAmount > max) {
       modeRes <- grades$items[i]
+      mode_size <- 1
+    }
+    
+    if (mode_size == uniq_amount)
+      modeRes <- c("NA")
     
     return (modeRes)
   }
