@@ -40,13 +40,11 @@ methods = list(
     
     if(size %% 2 == 1) {
       value <- grades$items[[size / 2 + 1]]
-      return (value)
     }
     else{
       value <- (grades$items[[size / 2]] + grades$items[[size / 2 + 1 ]]) / 2
-
-      return (value)    
     }
+    return (value)
   },
 
   grades_mean = function() {
