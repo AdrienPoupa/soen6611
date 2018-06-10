@@ -1,8 +1,8 @@
-#R version 3.3.2 
-#Author: Group J
-#SOEN 6611 Project 
-#Driver
-#May-June 2018
+# R version 3.3.2 
+# Author: Team J
+# SOEN 6611 Project 
+# Driver
+# May-June 2018
 
 source("descriptive_statistics.r")
 source("data_provider.r")

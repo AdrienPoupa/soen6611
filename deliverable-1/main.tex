@@ -1616,22 +1616,22 @@ $$ a = 2.4 $$
 $$ b = 1.05 $$
 $$ F = 1 $$
 
-The value of $ S $ is coming from later in this document, in the Physical \gls{sloc} paragraph. We have counted 184 \gls{sloc} using the physical model, which gives:
+The value of $ S $ is coming from later in this document, in the Physical \gls{sloc} paragraph. We have counted 187 \gls{sloc} using the physical model, which gives:
 
-$$ S = 0.193 $$
+$$ S = 0.187 $$
 
 This results in:
 
-$$ E = 2.4*0.193^{1,05}*1 $$ 
-$$ E = 0.42662511285 $$ 
+$$ E = 2.4*0.187^{1,05}*1 $$ 
+$$ E = 0.41270993972 $$ 
 
 \gls{cocomo} gives an effort estimate of 0.42 person-months.
 
 Assuming the team works 20 days per month, 8 hours each day, then converting $ E $ in person-hours would give:
 
-$$ E = 0.42662511285 * 20 * 8 = 68.260018056 $$
+$$ E = 0.41270993972 * 20 * 8 = 66.0335903552 $$
 
-Therefore, the effort estimate is about $ E = 69 $ person-hours using the Basic \gls{cocomo} approach.\newline
+Therefore, the effort estimate is about $ E = 67 $ person-hours using the Basic \gls{cocomo} approach.\newline
 
 The difference is coming from the fact that our calculation of \gls{ucp} is done using the use cases that are closely related to the Descriptive-Statistics subsystem whereas the Basic \gls{cocomo} approach is based on the actual \gls{sloc} we have written. Those lines contain only the Descriptive-Statistics subsystem and none of the interaction described in the \gls{ucm}. As a consequence, the estimation given by the \gls{ucp} seems to be more accurate.
 \newpage
@@ -1854,7 +1854,7 @@ grades_median = function() {
 }
 \end{lstlisting}
 
-\paragraph{($\mu$) arithmetic mean}
+\paragraph{(\texorpdfstring{$\mu$}{u}) arithmetic mean}
 The \textbf{arithmetic mean}, $\mu$, is given by
 
 $$\mu = \frac{1}{n}\sum_{i=1}^{n} x_i$$
@@ -1879,7 +1879,7 @@ grades_mean = function() {
 }
 \end{lstlisting}
 
-\paragraph{($\sigma$) standard deviation}
+\paragraph{(\texorpdfstring{$\sigma$}{Sigma}) standard deviation}
 The \textbf{standard deviation}, $\sigma$, is given by\\
 
 This \gls{sd} function is population standard deviation.
@@ -1904,7 +1904,7 @@ grades_std_dev = function() {
 
 \subsubsection{Class "math\_util"}
 
-This class has all the math functions implementations which can be used by descriptive statistics functions.\\
+This class has all the math functions implementations which can be used by Descriptive Statistics functions.\\
 
 In out project we implemented square root function.\\
 
@@ -1937,12 +1937,6 @@ This is the main driver class which is used to run all the descriptive functions
 - Code Snippet:\\
 
 \begin{lstlisting}
-#R version 3.3.2 
-#Author: Group J
-#SOEN 6611 Project 
-#Driver
-#May-June 2018
-
 source("descriptive_statistics.r")
 source("data_provider.r")
 
@@ -2004,74 +1998,100 @@ assertthat returns TURE or FALSE which can be used to check if the intended func
 - Code Snippet:\\
 
 \begin{lstlisting}
-
 library("assertthat")
 
 source("descriptive_statistics.r")
 source("data_provider.r")
 
-dp <- data_provider()
-random_grades <- dp$get_random_numbers()
+unit_testing <- setRefClass("unit_testing",
+        fields = list(dp = "data_provider", ds = "descriptive_statistics"),
+        methods = list(
+          constructor = function(){
+            dp <<- data_provider()
+            random_grades <- dp$get_random_numbers()
+            
+            ds <<- descriptive_statistics(grades = random_grades)
+            
+            max_grade <- ds$max_grade()
+            min_grade <- ds$min_grade()
+            grades_mean <- ds$grades_mean()
+            grades_median <- ds$grades_median()
+            grades_mode <- ds$grades_mode()
+            
+            #standard deviation
+            std_dev <- ds$grades_std_dev()
+            
+            # https://www.calculatorsoup.com/calculators/statistics/mean-median-mode.php
+            print(paste0(are_equal(max_grade, 100)))
+            print(paste0(are_equal(min_grade, 1)))
+            print(paste0(are_equal(grades_mean, 47.324)))
+            print(paste0(are_equal(grades_median, 46)))
+            print(paste0(are_equal(grades_mode, c(22))))
+            
+            # http://www.calculator.net/standard-deviation-calculator.html
+            are_equal(std_dev, 28.719105557103)
+            
+            # R compare with R built-in functions
+            max(random_grades$items)
+            min(random_grades$items)
+            mean(random_grades$items)
+            median(random_grades$items)
+            
+            # data <- c(93, 45, 75, 96, 80, 45, 2, 66, 75)
+            # Test function only
+            getmode <- function(v) {
+              uniqv <- unique(v)
+              uniqv[which.max(tabulate(match(v, uniqv)))]
+            }
+            
+            getmode(random_grades$items)
+            sd(random_grades$items)
+            
+            print(paste0(are_equal(max_grade, max(random_grades$items))))
+            print(paste0(are_equal(min_grade, min(random_grades$items))))
+            print(paste0(are_equal(grades_mean, mean(random_grades$items))))
+            print(paste0(are_equal(grades_median, median(random_grades$items))))
+            print(paste0(are_equal(grades_mode, getmode(random_grades$items))))
+          }
+        )
+)
 
-ds <- descriptive_statistics(grades = random_grades)
-
-max_grade <- ds$max_grade()
-min_grade <- ds$min_grade()
-grades_mean <- ds$grades_mean()
-grades_median <- ds$grades_median()
-grades_mode <- ds$grades_mode()
-
-#standard deviation
-std_dev <- ds$grades_std_dev()
-
-# https://www.calculatorsoup.com/calculators/statistics/mean-median-mode.php
-are_equal(max_grade, 100)
-are_equal(min_grade, 1)
-are_equal(grades_mean, 47.324)
-are_equal(grades_median, 46)
-are_equal(grades_mode, c(22))
-
-# http://www.calculator.net/standard-deviation-calculator.html
-are_equal(std_dev, 28.719105557103)
-
-# R compare with R built-in functions
-max(random_grades$items)
-min(random_grades$items)
-mean(random_grades$items)
-median(random_grades$items)
-
-# data <- c(93, 45, 75, 96, 80, 45, 2, 66, 75)
-# Test function only
-getmode <- function(v) {
-  uniqv <- unique(v)
-  uniqv[which.max(tabulate(match(v, uniqv)))]
-}
-
-getmode(random_grades$items)
-sd(random_grades$items)
-
-are_equal(max_grade, max(random_grades$items))
-are_equal(min_grade, min(random_grades$items))
-are_equal(grades_mean, mean(random_grades$items))
-are_equal(grades_median, median(random_grades$items))
-are_equal(grades_mode, getmode(random_grades$items))
-
+main<-unit_testing()
+main$constructor()
 \end{lstlisting}
 
 - Output:
 
 \begin{lstlisting}
 
-> are_equal(max_grade, max(random_grades$items))
-[1] TRUE
-> are_equal(min_grade, min(random_grades$items))
-[1] TRUE
-> are_equal(grades_mean, mean(random_grades$items))
-[1] TRUE
-> are_equal(grades_median, median(random_grades$items))
-[1] TRUE
-> are_equal(grades_mode, getmode(random_grades$items))
-[1] TRUE
+[1] "TRUE"
+[1] "TRUE"
+[1] "TRUE"
+[1] "TRUE"
+[1] "TRUE"
+[1] "TRUE"
+[1] "TRUE"
+[1] "TRUE"
+[1] "TRUE"
+[1] "TRUE"
+
+\end{lstlisting}
+
+for each of the conditions:
+
+\begin{lstlisting}
+
+print(paste0(are_equal(max_grade, 100)))
+print(paste0(are_equal(min_grade, 1)))
+print(paste0(are_equal(grades_mean, 47.324)))
+print(paste0(are_equal(grades_median, 46)))
+print(paste0(are_equal(grades_mode, c(22))))
+...
+print(paste0(are_equal(max_grade, max(random_grades$items))))
+            print(paste0(are_equal(min_grade, min(random_grades$items))))
+            print(paste0(are_equal(grades_mean, mean(random_grades$items))))
+            print(paste0(are_equal(grades_median, median(random_grades$items))))
+            print(paste0(are_equal(grades_mode, getmode(random_grades$items))))
 
 \end{lstlisting}
 
@@ -2091,24 +2111,24 @@ $$ v(G) = d + 1 $$
 
 where $ d $ is the number of predicates having an out-degree of 2.\newline 
 
-For the calculation of the complexity number of the methods that we have written, we first drew the control flow graph of each function, calculated the complexity number using the first formula, then we confirmed our results using the second formula with the number of predicates.\newline
+For the calculation of the complexity number of the methods that we have written, we first drew the control flow graph of each function, calculated the complexity number using the first formula, then we confirmed our results using the second formula with the number of predicates.\newline When a function was using another function that we wrote, we added the cyclomatic complexity of the remote function to the current one. For example, the calculation of the standard deviation uses the sum, the square root and the mean functions that we wrote.\newline
 
 \begin{table}[ht!]
 \centering
 \begin{tabular}{lll}
 Method           & d & v(G) \\
-max\_grade       & 2 & 3    \\
-min\_grade       & 2 & 3    \\
+max\_grade       & 1 & 2    \\
+min\_grade       & 1 & 2    \\
 grades\_median   & 1 & 2    \\
 grades\_mean     & 1 & 2    \\
 sum\_custom      & 1 & 2    \\
-grades\_std\_dev & 0 & 1    \\
+grades\_std\_dev & 4 & 5    \\
 grades\_mode     & 7 & 8    \\
-getmax           & 2 & 3    \\
-countsort        & 3 & 4    \\
-sort             & 1 & 2    \\
+get\_max         & 2 & 3    \\
+count\_sort      & 3 & 4    \\
+sort             & 6 & 7    \\
 size             & 0 & 1    \\
-get\_random\_numbers             & 0 & 1    \\
+get\_random\_numbers & 3 & 4    \\
 square\_root     & 2 & 3   
 \end{tabular}
 \caption{Cyclomatic number for Descriptive-Statistics methods}
@@ -2141,10 +2161,10 @@ where $ C_{i} $ is the complexity of the method $ M_{i} $.\newline
 
 We used the cyclomatic number as a measure of complexity for each method, given that weights are not normalized. Then, using the results found in the section 5, we have:
 
-$$ WMC = 1 * 3 + 2 * 4 + 3 * 4 + 4 * 1 + 8 * 1 $$ 
-$$ WMC = 35 $$
+$$ WMC = 1 * 1 + 2 * 5 + 3 * 2 + 4 * 2 + 5 * 1 + 7 * 1 + 8 * 1 $$ 
+$$ WMC = 45 $$
 
-Therefore, the \gls{wmc} is of 35 for Descriptive Statistics.
+Therefore, the \gls{wmc} is of 45 for Descriptive Statistics.
 
 \subsection{Coupling Factor}
 
@@ -2161,6 +2181,8 @@ $$ CF = 0.25 $$
 
 Therefore, the Coupling Factor for Descriptive Statistics is equal to 0.25.
 
+\newpage
+
 \subsection{Lack of Cohesion in Methods}
 
 We can calculate the \gls{lcom} using the following formula:
@@ -2168,6 +2190,23 @@ We can calculate the \gls{lcom} using the following formula:
 $$ LCOM^{*} = \frac{\frac{1}{a}\sum\limits_{i=1}^{a} \mu(A_{i})-m}{1-m} $$
 
 where $ a $ is the number of attributes, $ m $ the number of methods and $ \mu(A_{k}) $ is the number of methods that access an attribute $ A_{k} $.
+
+We can calculate the \gls{lcom} for each of the classes represented in the class diagram above:
+
+$$ LCOM^{*}_{Descriptive Statistics} = \frac{\frac{1}{1}+xyz-7}{1-7} $$
+$$ LCOM^{*}_{Descriptive Statistics} =  $$
+
+$$ LCOM^{*}_{DS List} = \frac{\frac{1}{1}+xyz-4}{1-4} $$
+$$ LCOM^{*}_{DS List} =  $$
+
+$$ LCOM^{*}_{Data Provider} = \frac{\frac{1}{1}+xyz-1}{1-1} $$
+$$ LCOM^{*}_{Data Provider} =  $$
+
+$$ LCOM^{*}_{Driver} = \frac{\frac{1}{2}+xyz-1}{1-1} $$
+$$ LCOM^{*}_{Driver} =  $$
+
+$$ LCOM^{*}_{Math Util} = \frac{\frac{1}{0}+xyz-1}{1-1} $$
+$$ LCOM^{*}_{Math Util} =  $$
 
 \newpage
 

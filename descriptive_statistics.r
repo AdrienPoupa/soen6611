@@ -1,8 +1,8 @@
-#R version 3.3.2 
-#Author: Group J
-#SOEN 6611 Project 
-#Descriptive Statistics
-#May-June 2018
+# R version 3.3.2 
+# Author: Team J
+# SOEN 6611 Project 
+# Descriptive Statistics
+# May-June 2018
 
 source("math_util.r")
 source("ds_list.r")
@@ -61,51 +61,51 @@ methods = list(
 
     std_dev <- math$square_root(sum_custom((grades$items - mean)^2) / grades$size())
 	  
-    return(std_dev)
+    return (std_dev)
   },
 
   grades_mode = function() {
     n <- grades$size()
     max <- 1
-    currentAmount <- 1
+    current_amount <- 1
     n <- n-1
-    modeRes <- c()
+    mode_res <- c()
     mode_size <- 0
     uniq_amount <- 1
     
     for (i in c(1:n)) {
       if (grades$items[i] == grades$items[i + 1]) {
-        currentAmount <- currentAmount+1
+        current_amount <- current_amount+1
       }
       else {
-        if(currentAmount == max) {
-          modeRes <- c(modeRes, grades$items[i])
+        if(current_amount == max) {
+          mode_res <- c(mode_res, grades$items[i])
           mode_size <- mode_size+1
         }
-        if (currentAmount > max) {
-          max <- currentAmount
-          modeRes <- grades$items[i]
+        if (current_amount > max) {
+          max <- current_amount
+          mode_res <- grades$items[i]
           mode_size <- 1
         }
-        currentAmount <- 1
+        current_amount <- 1
         uniq_amount <- uniq_amount+1
       }
     }
     
-    if (currentAmount == max) {
-      modeRes <- c(modeRes, grades$items[n+1])
+    if (current_amount == max) {
+      mode_res <- c(mode_res, grades$items[n+1])
       mode_size <- mode_size+1
     }
     
-    if (currentAmount > max) {
-      modeRes <- grades$items[i]
+    if (current_amount > max) {
+      mode_res <- grades$items[i]
       mode_size <- 1
     }
     
     if (mode_size == uniq_amount)
-      modeRes <- c("NA")
+      mode_res <- c("NA")
     
-    return (modeRes)
+    return (mode_res)
   }
 )
 )

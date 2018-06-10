@@ -1,7 +1,8 @@
-#R version 3.3.2 
-#Author: Farhan Shaheen
-#Square Root function in R
-#May 2018
+# R version 3.3.2 
+# Author: Team J
+# SOEN 6611 Project 
+# Square root function in R
+# May-June 2018
 
 math_util <- setRefClass("math_util",
 methods = list(
@@ -17,7 +18,7 @@ methods = list(
             else
                 low <- mid
         }    
-        return(mid)
+        return (mid)
     }
 )
 )
