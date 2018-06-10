@@ -12,7 +12,7 @@ math_util_test <- setRefClass("math_util_test",
         methods = list(
           constructor = function(){
             math <- math_util()
-            are_equal(math$square_root(81), 9)
+            print(paste0(are_equal(math$square_root(81), 9)))
           }
         )
 )
