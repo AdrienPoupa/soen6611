@@ -11,31 +11,14 @@ descriptive_statistics <- setRefClass("descriptive_statistics",
 fields = list(grades = "ds_list"),
 methods = list(
   max_grade = function() {
-    value = grades$items[[1]]
-  
-    for(i in grades$items) {
-      if (i > value) {
-        value = i
-      }
-    }
-    
-    return (value)
+    return (grades$items[[grades$size()]])
   },
 
   min_grade = function() {
-    value = grades$items[[1]]
-    
-    for(i in grades$items) {
-      if (i < value) {
-        value = i
-      }
-    }
-
-    return (value)
+    return (grades$items[[1]])
   },
 
   grades_median = function() {
-    grades$sort()
     size <- grades$size()
     
     if(size %% 2 == 1) {
