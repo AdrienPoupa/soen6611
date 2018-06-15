@@ -14,6 +14,9 @@
 \usepackage{wrapfig}
 \usepackage{wasysym}
 \usepackage{enumitem}
+\setlist[itemize]{after=\vspace{-0.50\baselineskip},before=\vspace{-0.95\baselineskip}}
+\newlist{ucmenum}{enumerate}{1}
+\setlist[ucmenum]{label=\arabic*,after=\vspace{-0.50\baselineskip},before=\vspace{-0.95\baselineskip}}
 \usepackage{adjustbox}
 \usepackage{ragged2e}
 \usepackage{hhline}
@@ -37,7 +40,6 @@
 \usepackage{color}
 \makeglossaries
 
-\newacronym{api}{API}{Application Programming Interface}
 \newacronym{cyclomaticnumber}{Cyclomatic Number}{Software metric, used to indicate the complexity of a program}
 \newacronym{gqm}{GQM}{Goal Question Metric}
 \newacronym{sis}{SIS}{Student Information System}
@@ -45,12 +47,12 @@
 \newacronym{cf}{CF}{Coupling Factor}
 \newacronym{lcom}{LCOM*}{Lack of Cohesion in Methods}
 \newacronym{sloc}{SLOC}{Source Line of Code}
+\newacronym{cloc}{CLOC}{Count Lines of Code}
 \newacronym{ucm}{UCM}{Use Case Model}
 \newacronym{ucp}{UCP}{Use Case Points}
 \newacronym{uucp}{UUCP}{Unadjusted Use Case Points}
 \newacronym{uucw}{UUCW}{Unadjusted Use Case Weight}
 \newacronym{uaw}{UAW}{Unadjusted Actor Weight}
-\newacronym{uprew}{UPreW}{Unadjusted Precondition Weight}
 \newacronym{tcf}{TCF}{Technical Complexity Factor}
 \newacronym{ecf}{ECF}{Environment Complexity Factor}
 \newacronym{pf}{PF}{Productivity Factor}
@@ -61,6 +63,10 @@
 \newacronym{kdsi}{KDSI}{Kilo Delivered Source Instructions}
 \newacronym{sd}{SD}{Standard deviation}
 
+\newglossaryentry{radix}{
+	name=Radix sort,
+    description={A sorting algorithm that gives each item a unique identifier and distributes each of them to a bucket. After each pass, items are being sorted based on the value of the unique identifier. \cite{nist}}
+}
 \newglossaryentry{integration}
 {
   name=Integration tests,
@@ -110,7 +116,7 @@ citecolor=blue}
 
 \begin{document}
 \title{Software Measurement (SOEN6611)\\Summer 2018\\Descriptive Statistics\\Team J\\Deliverable 1}
-\author{Ksenia Popova, Farhan Shaheen, Himalaya Reddiboina,\\Kaushik Samanta, Adrien Poupa, Yousef Saatchi Tabriz}
+\author{Ksenia Popova, Farhan Shaheen, Himalaya Yadav Reddiboina,\\Kaushik Samanta, Adrien Poupa, Yousef Saatchi Tabriz}
 \date{}
 \maketitle
 
@@ -123,7 +129,7 @@ citecolor=blue}
 
 \subsection{Goal}
 
-To create a subsystem, integrated in a \gls{sis} in order to be used to collect statistics about students grades. The subsystem is named "Descriptive Statistics". The subsystem must be accessible by the \gls{sis} and usable by the students, the administration and the professors. Descriptive Statistics has to provide students statistics of their grades in an easy manner. Professors must be able to enter the grades and see the students' statistics quickly. The administrators must be able to oversee the system without any hassle. Descriptive Statistics must be able to recover from errors.
+To create a subsystem, integrated in a \gls{sis} in order to be used to collect statistics about students grades. The subsystem is named "Descriptive Statistics". The subsystem must be accessible by the \gls{sis} and usable by the students, administration and the professors. Descriptive Statistics has to provide students statistics of their grades in an easy manner. Professors must be able to enter the grades and see the students' statistics quickly. The administrators must be able to oversee the system without any hassle. Descriptive Statistics must be able to recover from errors.
 \newline
 \newline
 Note: in this document, "users" designate the actors of Descriptive Statistics; professors, students and a department member.
@@ -328,9 +334,9 @@ Note: in this document, "users" designate the actors of Descriptive Statistics; 
 \hhline{--}
 %row no:9
 \multicolumn{1}{|p{1.23in}}{Normal Flow} & 
-\multicolumn{1}{|p{4.87in}|}{\begin{enumerate}
+\multicolumn{1}{|p{4.87in}|}{\begin{ucmenum}
 	\item User requests the login page of the system. \par 	\item System displays the login page. \par 	\item User enters their username and their password. \par 	\item User clicks on $``$Login$"$ . \par 	\item System checks the User’s credentials. \par 	\item System redirects User to the homepage. \par 	\item System displays the homepage. \par 	\item User sees the homepage.
-\end{enumerate}} \\
+\end{ucmenum}} \\
 \hhline{--}
 %row no:10
 \multicolumn{1}{|p{1.23in}}{Alternate Flow} & 
@@ -398,9 +404,9 @@ Note: in this document, "users" designate the actors of Descriptive Statistics; 
 \hhline{--}
 %row no:9
 \multicolumn{1}{|p{1.23in}}{Normal Flow} & 
-\multicolumn{1}{|p{4.87in}|}{\begin{enumerate}
+\multicolumn{1}{|p{4.87in}|}{\begin{ucmenum}
 	\item User requests the list of the courses available. \par 	\item The System displays the list of the courses available: \par 	\item If the user is a Professor: list of courses taught by the Professor. \par 	\item If the user is a Department member: list of the courses that the Department offers. \par 	\item If the user is a Student: list of courses that the Student is enrolled in.
-\end{enumerate}} \\
+\end{ucmenum}} \\
 \hhline{--}
 %row no:10
 \multicolumn{1}{|p{1.23in}}{Alternate Flow} & 
@@ -470,9 +476,9 @@ Note: in this document, "users" designate the actors of Descriptive Statistics; 
 \hhline{--}
 %row no:9
 \multicolumn{1}{|p{1.23in}}{Normal Flow} & 
-\multicolumn{1}{|p{4.87in}|}{\begin{enumerate}
+\multicolumn{1}{|p{4.87in}|}{\begin{ucmenum}
 	\item User selects a course from the course list. \par 	\item The System displays the course details: \par 	\item Course code \par 	\item Course name \par 	\item Professor of the course \par 	\item Department of the course \par 	\item Number of Students enrolled in the course \par 	\item Link to $``$Assessments$"$  \par 	\item Link to $``$All Assessments$"$  if the user is a Professor or a Department member
-\end{enumerate}} \\
+\end{ucmenum}} \\
 \hhline{--}
 %row no:10
 \multicolumn{1}{|p{1.23in}}{Alternate Flow} & 
@@ -542,13 +548,9 @@ Note: in this document, "users" designate the actors of Descriptive Statistics; 
 \hhline{--}
 %row no:9
 \multicolumn{1}{|p{1.23in}}{Normal Flow} & 
-\multicolumn{1}{|p{4.87in}|}{\begin{enumerate}
+\multicolumn{1}{|p{4.87in}|}{\begin{ucmenum}
 	\item User selects clicks on $``$Assessments$"$  in a course details. \par 	\item The System displays the assessments links: \par 	\item Link to $``$Lowest Grade$"$  \par 	\item Link to $``$Highest Grade$"$  \par 	\item Link to $``$Average Grade$"$  \par 	\item Link to $``$Most Common Grade$"$  \par 	\item Link to $``$Middle Grade$"$  \par 	\item Link to $``$Final Grade$"$  if the user is a Student \par 	\item Link to $``$Final Grades$"$  if the user is a Professor or a Department member. \par 	\item Link to $``$Enter grades$"$  if the user is a Professor \par 	\item Link to $``$Edit grades$"$  if the user is a Professor
-\end{enumerate}} \\
-\hhline{--}
-%row no:10
-\multicolumn{1}{|p{1.23in}}{Alternate Flow} & 
-\multicolumn{1}{|p{4.87in}|}{ } \\
+\end{ucmenum}} \\
 \hhline{--}
 
 \end{tabular}
@@ -614,9 +616,9 @@ Note: in this document, "users" designate the actors of Descriptive Statistics; 
 \hhline{--}
 %row no:9
 \multicolumn{1}{|p{1.23in}}{Normal Flow} & 
-\multicolumn{1}{|p{4.87in}|}{\begin{enumerate}
+\multicolumn{1}{|p{4.87in}|}{\begin{ucmenum}
 	\item User clicks on $``$Lowest grade$"$ . \par 	\item The System displays the lowest grade.
-\end{enumerate}} \\
+\end{ucmenum}} \\
 \hhline{--}
 %row no:10
 \multicolumn{1}{|p{1.23in}}{Alternate Flow} & 
@@ -690,9 +692,9 @@ Note: in this document, "users" designate the actors of Descriptive Statistics; 
 \hhline{--}
 %row no:9
 \multicolumn{1}{|p{1.23in}}{Normal Flow} & 
-\multicolumn{1}{|p{4.87in}|}{\begin{enumerate}
+\multicolumn{1}{|p{4.87in}|}{\begin{ucmenum}
 	\item User clicks on $``$Highest grade$"$ . \par 	\item The System displays the highest grade.
-\end{enumerate}} \\
+\end{ucmenum}} \\
 \hhline{--}
 %row no:10
 \multicolumn{1}{|p{1.23in}}{Alternate Flow} & 
@@ -768,9 +770,9 @@ Note: in this document, "users" designate the actors of Descriptive Statistics; 
 \hhline{--}
 %row no:9
 \multicolumn{1}{|p{1.23in}}{Normal Flow} & 
-\multicolumn{1}{|p{4.87in}|}{\begin{enumerate}
+\multicolumn{1}{|p{4.87in}|}{\begin{ucmenum}
 	\item User clicks on $``$Average grade$"$ . \par 	\item The System displays the average grade.
-\end{enumerate}} \\
+\end{ucmenum}} \\
 \hhline{--}
 %row no:10
 \multicolumn{1}{|p{1.23in}}{Alternate Flow} & 
@@ -840,9 +842,9 @@ Note: in this document, "users" designate the actors of Descriptive Statistics; 
 \hhline{--}
 %row no:9
 \multicolumn{1}{|p{1.23in}}{Normal Flow} & 
-\multicolumn{1}{|p{4.87in}|}{\begin{enumerate}
+\multicolumn{1}{|p{4.87in}|}{\begin{ucmenum}
 	\item User clicks on $``$Most common grade$"$ . \par 	\item The System displays the most common grade.
-\end{enumerate}} \\
+\end{ucmenum}} \\
 \hhline{--}
 %row no:10
 \multicolumn{1}{|p{1.23in}}{Alternate Flow} & 
@@ -912,9 +914,9 @@ Note: in this document, "users" designate the actors of Descriptive Statistics; 
 \hhline{--}
 %row no:9
 \multicolumn{1}{|p{1.23in}}{Normal Flow} & 
-\multicolumn{1}{|p{4.87in}|}{\begin{enumerate}
+\multicolumn{1}{|p{4.87in}|}{\begin{ucmenum}
 	\item User clicks on $``$Middle grade$"$ . \par 	\item The System displays the middle grade.
-\end{enumerate}} \\
+\end{ucmenum}} \\
 \hhline{--}
 %row no:10
 \multicolumn{1}{|p{1.23in}}{Alternate Flow} & 
@@ -986,9 +988,9 @@ Note: in this document, "users" designate the actors of Descriptive Statistics; 
 \hhline{--}
 %row no:9
 \multicolumn{1}{|p{1.23in}}{Normal Flow} & 
-\multicolumn{1}{|p{4.87in}|}{\begin{enumerate}
+\multicolumn{1}{|p{4.87in}|}{\begin{ucmenum}
 	\item User clicks on $``$Final grades$"$ . \par 	\item The System displays the Final grade for every Student. Student above the average score as pass and student below 20$\%$  of average are fail. This is computed using the standard deviation.
-\end{enumerate}} \\
+\end{ucmenum}} \\
 \hhline{--}
 %row no:10
 \multicolumn{1}{|p{1.23in}}{Alternate Flow} & 
@@ -1056,9 +1058,9 @@ Note: in this document, "users" designate the actors of Descriptive Statistics; 
 \hhline{--}
 %row no:9
 \multicolumn{1}{|p{1.23in}}{Normal Flow} & 
-\multicolumn{1}{|p{4.87in}|}{\begin{enumerate}
+\multicolumn{1}{|p{4.87in}|}{\begin{ucmenum}
 	\item User clicks on $``$Final grade$"$ . \par 	\item The System displays the Final grade for the Student. Student above the average score as pass and student below 20$\%$  of average are fail. This is computed using the standard deviation.
-\end{enumerate}} \\
+\end{ucmenum}} \\
 \hhline{--}
 %row no:10
 \multicolumn{1}{|p{1.23in}}{Alternate Flow} & 
@@ -1144,9 +1146,9 @@ Note: in this document, "users" designate the actors of Descriptive Statistics; 
 \hhline{--}
 %row no:9
 \multicolumn{1}{|p{1.23in}}{Normal Flow} & 
-\multicolumn{1}{|p{4.87in}|}{\begin{enumerate}
+\multicolumn{1}{|p{4.87in}|}{\begin{ucmenum}
 	\item User clicks on $``$Final grades$"$ . \par 	\item The System displays the Final grade for every student (Student above the average score as pass and student below 20$\%$  of average are fail). \par 	\item User selects the $``$Sort$"$  button \par 	\item Final grades are displayed in ascending when clicked once, displayed in descending order when clicked twice.
-\end{enumerate}} \\
+\end{ucmenum}} \\
 \hhline{--}
 %row no:10
 \multicolumn{1}{|p{1.23in}}{Alternate Flow} & 
@@ -1212,9 +1214,9 @@ Note: in this document, "users" designate the actors of Descriptive Statistics; 
 \hhline{--}
 %row no:9
 \multicolumn{1}{|p{1.23in}}{Normal Flow} & 
-\multicolumn{1}{|p{4.87in}|}{\begin{enumerate}
+\multicolumn{1}{|p{4.87in}|}{\begin{ucmenum}
 	\item Professor clicks on $``$Enter grades$"$ . \par 	\item Professor selects a student. \par 	\item Portal asks the grade of the student. \par 	\item Professor enters the grade. \par 	\item Portal stores the grade in the database.
-\end{enumerate}} \\
+\end{ucmenum}} \\
 \hhline{--}
 %row no:10
 \multicolumn{1}{|p{1.23in}}{Alternate Flow} & 
@@ -1284,9 +1286,9 @@ Note: in this document, "users" designate the actors of Descriptive Statistics; 
 \hhline{--}
 %row no:9
 \multicolumn{1}{|p{1.23in}}{Normal Flow} & 
-\multicolumn{1}{|p{4.87in}|}{\begin{enumerate}
+\multicolumn{1}{|p{4.87in}|}{\begin{ucmenum}
 	\item Professor clicks on $``$Edit grades$"$ . \par 	\item User selects a student. \par 	\item User edits the grade. \par 	\item Portal stores the grade in the database.
-\end{enumerate}} \\
+\end{ucmenum}} \\
 \hhline{--}
 %row no:10
 \multicolumn{1}{|p{1.23in}}{Alternate Flow} & 
@@ -1360,9 +1362,9 @@ Note: in this document, "users" designate the actors of Descriptive Statistics; 
 \hhline{--}
 %row no:9
 \multicolumn{1}{|p{1.23in}}{Normal Flow} & 
-\multicolumn{1}{|p{4.87in}|}{\begin{enumerate}
+\multicolumn{1}{|p{4.87in}|}{\begin{ucmenum}
 	\item User clicks on $``$All assessments$"$  button. \par 	\item System displays all assessments of all students for the course.
-\end{enumerate}} \\
+\end{ucmenum}} \\
 \hhline{--}
 %row no:10
 \multicolumn{1}{|p{1.23in}}{Alternate Flow} & 
@@ -1430,9 +1432,9 @@ Note: in this document, "users" designate the actors of Descriptive Statistics; 
 \hhline{--}
 %row no:9
 \multicolumn{1}{|p{1.23in}}{Normal Flow} & 
-\multicolumn{1}{|p{4.87in}|}{\begin{enumerate}
+\multicolumn{1}{|p{4.87in}|}{\begin{ucmenum}
 	\item Department member requests the list of the courses having grades waiting to be validated. \par 	\item The System displays the list of the courses having grades waiting to be validated. \par 	\item Department member selects the course. \par 	\item The System displays the grades waiting to be validated. \par 	\item Department member clicks on $``$Validate$"$  to validate the grades. \par 	\item The System displays a confirmation message. \par 	\item The System redirects the Department member to the list of the courses having grades waiting to be validated.
-\end{enumerate}} \\
+\end{ucmenum}} \\
 \hhline{--}
 %row no:10
 \multicolumn{1}{|p{1.23in}}{Alternate Flow} & 
@@ -1450,9 +1452,9 @@ Note: in this document, "users" designate the actors of Descriptive Statistics; 
 
 In this part, we will calculate the effort estimate using the \gls{ucp} approach. Let the \gls{pf} be 20. The formulas used to calculate the effort are as follows:
 
-$$ Effort estimate = UCP * PF $$
+$$ Effort\quad estimate = UCP * PF $$
 
-and
+and the \gls{ucp} being equal to the \gls{uucp} multiplied by the \gls{tcf} and the \gls{ecf}
 
 $$ UCP = UUCP * TCF * ECF $$
 
@@ -1476,7 +1478,7 @@ Descriptive-Statistics Subsystem & Simple Actor  & 1      \\ \hline
 \end{tabular}%
 \end{table}
 
-As one can see, our system contains six actors: the human actors are complex while the subsystems are simple. Therefore,
+The system consists of six actors: the human actors are complex while the subsystems are simple. Therefore,
 
 $$ UAW = 3 * 3 + 2 * 1 = 11 $$
 
@@ -1555,6 +1557,8 @@ $$ TCF = C_{1} + C_{2}\sum\limits_{i=1}^{13} (W_{Ti} * F_{i}) $$
 $$ TCF = 0.6 + 0.01 * (6 + 4 + 4 + 2 + 2 + 0.5 + 2.5 + 4 + 2 + 4 + 3 + 1 + 0) $$
 $$ TCF = 0.95 $$
 
+The value of the \gls{tcf} is of 0.95. One can say that the \gls{tcf} of the system is average.
+
 \newpage
 
 We will now focus on \gls{ecf} calculation. Below is a table showing all the factors and their weight for the project:
@@ -1586,12 +1590,17 @@ $$ ECF = C_{1} + C_{2}\sum\limits_{i=1}^{13} (W_{Ei} * F_{i}) $$
 $$ ECF = 1.4 - 0.03 * (7.5 - 1 + 1.5 + 1 + 3 + 4 - 1 + 8) $$
 $$ ECF = 0.71 $$
 
+The value of the \gls{ecf} is of 0.71. One can say that the \gls{ecf} of the system is average.
+
 We can now calculate \gls{ucp}:
 
 $$ UCP = UUCP * TCF * ECF $$
 $$ UCP = 91 * 0.95 * 0.71 $$
 $$ UCP = 61.3795 $$
 
+\newpage
+
+Since we are a new development team the value of PF would be 20.
 Therefore, the effort estimate is:
 
 $$ Effort = UCP * PF $$
@@ -1616,31 +1625,29 @@ $$ a = 2.4 $$
 $$ b = 1.05 $$
 $$ F = 1 $$
 
-The value of $ S $ is coming from later in this document, in the Physical \gls{sloc} paragraph. We have counted 187 \gls{sloc} using the physical model, which gives:
+The value of $ S $ is coming from later in this document, in the Physical \gls{sloc} paragraph. We have counted 182 \gls{sloc} using the physical model, which gives:
 
-$$ S = 0.187 $$
+$$ S = 0.182 $$
 
 This results in:
 
-$$ E = 2.4*0.187^{1,05}*1 $$ 
-$$ E = 0.41270993972 $$ 
-
-\gls{cocomo} gives an effort estimate of 0.42 person-months.
+$$ E = 2.4*0.182^{1,05}*1 $$ 
+$$ E = 0.40113097496 $$ 
 
 Assuming the team works 20 days per month, 8 hours each day, then converting $ E $ in person-hours would give:
 
-$$ E = 0.41270993972 * 20 * 8 = 66.0335903552 $$
+$$ E = 0.40113097496 * 20 * 8 = 64.1809559936 $$
 
-Therefore, the effort estimate is about $ E = 67 $ person-hours using the Basic \gls{cocomo} approach.\newline
+Therefore, the effort estimate is about $ E = 65 $ person-hours using the Basic \gls{cocomo} approach.\newline
 
-The difference is coming from the fact that our calculation of \gls{ucp} is done using the use cases that are closely related to the Descriptive-Statistics subsystem whereas the Basic \gls{cocomo} approach is based on the actual \gls{sloc} we have written. Those lines contain only the Descriptive-Statistics subsystem and none of the interaction described in the \gls{ucm}. As a consequence, the estimation given by the \gls{ucp} seems to be more accurate.
+The difference is coming from the fact that our calculation of \gls{ucp} is done using the use cases that are closely related to the Descriptive-Statistics subsystem whereas the Basic \gls{cocomo} approach is based on the actual number of lines of code that were written. Those lines contain only the Descriptive-Statistics subsystem and none of the interaction described in the \gls{ucm}. As a consequence, the estimation given by the \gls{ucp} seems to be more accurate.
 \newpage
 
 \section{Coding and Testing}
-Main programming language used to implement the descriptive statistics for the project is R Language.
+The programming language used to implement Descriptive Statistics was R.
 \subsection{Coding}
 
-We have five main classes in the project:\\
+Excluding test classes, there are five classes in the project:\\
 
 \begin{lstlisting}
 data_provider <- setRefClass("data_provider",
@@ -1651,13 +1658,15 @@ driver <- setRefClass("driver",
 
 \end{lstlisting}
 
-\subsubsection{Class "data\_provider" is responsible for data input}
+\subsubsection{data\_provider}
+
+The "data\_provider" class is responsible for data input.\\
 
 - Reading data from file:\\
 
-We are using a CSV file as input which has 1000 random number that range between 1 to 100.\\
+We are using a CSV file as input which has 1000 random numbers that range between 1 to 100.\\
 
-List is also being sort after data has been retrieved from the file. This is done for optimal performance.\\
+The list is being sorted after data has been retrieved from the file: this way, the list is only sorted once making it less expensive to retrieve the minimum, maximum and median values without having to traverse the list each time.\\
 
 - Code Snippet:\\
 
@@ -1677,15 +1686,17 @@ methods = list(
 )
 \end{lstlisting}
 
-\subsubsection{Class "ds\_list" has sorting functionality and also sorts the list}
+\subsubsection{ds\_list}
+
+The "ds\_list" class sorts the list.\\
 
 - Sorting:\\
 
-We are using Radix sort to sort the list.\\
+We are using \gls{radix} to sort the list.\\
 
-Because of the nature of the input, we can exploit the radix sort to our advantage. Since the maximum number in the list can be 100 regardless of the length of the list, we are able to sort the data in $\Theta(dn)$. $d=3$ is our case.\\
+Because of the nature of the input, we can use the radix sort to our advantage. Since the maximum number in the list can be 100 regardless of the length of the list, we are able to sort the data in $\Theta(dn)$\cite{CLRS}. In our case, $d=3$.\\
 
-That is a huge performance improvement as we are able to sort the list linearly.\\
+That is a performance improvement as we are able to sort the list linearly.\\
 
 - Code Snippet:\\
 
@@ -1735,7 +1746,9 @@ sort = function(){
 }
 \end{lstlisting}
 
-\subsubsection{Class "descriptive\_statistics" has all the descriptive statistics functions}
+\subsubsection{descriptive\_statistics}
+
+The "descriptive\_statistics" class contains all the descriptive statistics functions.\\
 
 There are 6 functions as follows.
 
@@ -1749,11 +1762,11 @@ There are 6 functions as follows.
 \end{enumerate}
 
 \paragraph{(m) minimum}
-The \textbf{minimum}, m, is the smallest of the values in the given data set. (m need not be unique.)\\
+The \textbf{minimum}, m, is the smallest value in the given data set. (m need not be unique.)\\
 
 Function "min\_grade" finds the smallest number from the list of $n$ numbers.\\
 
-Since list was sorted in the beginning. 1st item in the list is the minimum. Asymptotic complexity for calculating (m) is $O(1)$, which is constant.\\
+Since the list is being sorted in the beginning, the first item in the list is the minimum. The asymptotic complexity to calculate (m) is $O(1)$, which is constant.\\
 
 - Code Snippet:\\
 
@@ -1764,11 +1777,11 @@ min_grade = function() {
 \end{lstlisting}
 
 \paragraph{(M) maximum}
-The \textbf{maximum}, M, is the largest of the values in the given data set. (M need not be unique.)\\
+The \textbf{maximum}, M, is the highest value in the given data set. (M need not be unique.)\\
 
-Function "max\_grade" finds the largest number from the list of $n$ numbers.\\
+The function "max\_grade" finds the largest number from the list of $n$ numbers.\\
 
-Since list was sorted in the beginning. Last item in the list is the maximum. Asymptotic complexity for calculating (M) is $O(1)$, which is constant.\\
+Since the list is being sorted in the beginning, the last item in the list is the maximum. The asymptotic complexity to calculate (M) is $O(1)$, which is constant.\\
 
 - Code Snippet:\\
 
@@ -1783,7 +1796,7 @@ The \textbf{mode}, o, is the value that appears most frequently in the given dat
 
 There can be more than one mode.\\
 
-Since list was sorted in the beginning. Asymptotic complexity for calculating (o) is $O(n)$, which is linear.\\
+Since the list is being sorted in the beginning, the asymptotic complexity to calculate (o) is $O(n)$, which is linear.\\
 
 - Code Snippet:\\
 
@@ -1791,52 +1804,52 @@ Since list was sorted in the beginning. Asymptotic complexity for calculating (o
 grades_mode = function() {
     n <- grades$size()
     max <- 1
-    currentAmount <- 1
+    current_amount <- 1
     n <- n-1
-    modeRes <- c()
+    mode_res <- c()
     mode_size <- 0
     uniq_amount <- 1
     
     for (i in c(1:n)) {
       if (grades$items[i] == grades$items[i + 1]) {
-        currentAmount <- currentAmount+1
+        current_amount <- current_amount+1
       }
       else {
-        if(currentAmount == max) {
-          modeRes <- c(modeRes, grades$items[i])
+        if(current_amount == max) {
+          mode_res <- c(modeRes, grades$items[i])
           mode_size <- mode_size+1
         }
-        if (currentAmount > max) {
-          max <- currentAmount
-          modeRes <- grades$items[i]
+        if (current_amount > max) {
+          max <- current_amount
+          mode_res <- grades$items[i]
           mode_size <- 1
         }
-        currentAmount <- 1
+        current_amount <- 1
         uniq_amount <- uniq_amount+1
       }
     }
     
-    if (currentAmount == max) {
-      modeRes <- c(modeRes, grades$items[n+1])
+    if (current_amount == max) {
+      mode_res <- c(mode_res, grades$items[n+1])
       mode_size <- mode_size+1
     }
     
     if (currentAmount > max) {
-      modeRes <- grades$items[i]
+      mode_res <- grades$items[i]
       mode_size <- 1
     }
     
     if (mode_size == uniq_amount)
-      modeRes <- c("NA")
+      mode_res <- c("NA")
     
-    return (modeRes)
+    return (mode_res)
 }
 \end{lstlisting}
 
 \paragraph{(d) median}
 The \textbf{median}, d, is the \textbf{middle number if n is odd}, and is the \textbf{arithmetic mean of the two middle numbers if n is even.}\\
 
-Since list was sorted in the beginning. Asymptotic complexity for calculating (d) is $O(1)$, which is constant.\\
+Since the list is being sorted in the beginning, the asymptotic complexity to calculate (d) is $O(1)$, which is constant.\\
 
 - Code Snippet:\\
 
@@ -1859,7 +1872,7 @@ The \textbf{arithmetic mean}, $\mu$, is given by
 
 $$\mu = \frac{1}{n}\sum_{i=1}^{n} x_i$$
 
-Asymptotic complexity for calculating ($\mu$) is $O(n)$, which is linear.\\
+The asymptotic complexity to calculate ($\mu$) is $O(n)$, which is linear.\\
 
 - Code Snippet:\\
 
@@ -1882,11 +1895,11 @@ grades_mean = function() {
 \paragraph{(\texorpdfstring{$\sigma$}{Sigma}) standard deviation}
 The \textbf{standard deviation}, $\sigma$, is given by\\
 
-This \gls{sd} function is population standard deviation.
+The \gls{sd} function for a total population is given below:
 
 $$\sigma = \sqrt{\frac{1}{n}\sum_{i=1}^{n} (x_i - \mu)^2}$$
 
-Asymptotic complexity for calculating ($\sigma$) is: $\Theta(n)$ for mean + $\Theta(n)$ for sum\_custom() + $\Theta(\log{n})$ for square\_root; that is $O(n)$, which is linear.\\
+The asymptotic complexity to calculate ($\sigma$) is: $\Theta(n)$ for the mean + $\Theta(n)$ for the sum\_custom() + $\Theta(\log{n})$ for the square\_root; that is $O(n)$, which is linear.\\
 
 - Code Snippet:\\
 
@@ -1902,11 +1915,9 @@ grades_std_dev = function() {
 }
 \end{lstlisting}
 
-\subsubsection{Class "math\_util"}
+\subsubsection{math\_util}
 
-This class has all the math functions implementations which can be used by Descriptive Statistics functions.\\
-
-In out project we implemented square root function.\\
+The "math\_util" class contains the square root function which is being used by the standard deviation calculation function.\\
 
 - Code Snippet:\\
 
@@ -1931,8 +1942,8 @@ methods = list(
 )
 \end{lstlisting}
 
-\subsubsection{Class Driver}
-This is the main driver class which is used to run all the descriptive functions.\\
+\subsubsection{driver}
+The "driver" class is used to run all the descriptive statistics functions.\\
 
 - Code Snippet:\\
 
@@ -1974,9 +1985,9 @@ main$constructor()
 
 \subsection{Testing}
 
-\subsubsection{Running the code:}
+\subsubsection{Running the code}
 
-We are using driver to run all the descriptive statistics functions. Code given in section 4.1.5\\
+One can use the driver class to run all the descriptive statistics functions. The code for this class was given previously in section 4.1.5.\\
 
 - Output:
 
@@ -1989,11 +2000,17 @@ We are using driver to run all the descriptive statistics functions. Code given 
 [1] "grades standard deviation: 28.7191055402808"
 \end{lstlisting}
 
-\subsubsection{Unit testing in R:}
+\subsubsection{Unit testing in R}
 
-Using assertthat in R language.\\
+Using the "assertthat" package in R language.\\
 
-assertthat returns TURE or FALSE which can be used to check if the intended function is working properly.
+To begin with, before running the tests, one should install the package using the following command:
+
+\begin{lstlisting}
+install.packages('assertthat')
+\end{lstlisting}
+
+The "assertthat" package returns TRUE or FALSE which can be used to check if the intended function is working properly.
 
 - Code Snippet:\\
 
@@ -2004,56 +2021,63 @@ source("descriptive_statistics.r")
 source("data_provider.r")
 
 unit_testing <- setRefClass("unit_testing",
-        fields = list(dp = "data_provider", ds = "descriptive_statistics"),
-        methods = list(
-          constructor = function(){
-            dp <<- data_provider()
-            random_grades <- dp$get_random_numbers()
-            
-            ds <<- descriptive_statistics(grades = random_grades)
-            
-            max_grade <- ds$max_grade()
-            min_grade <- ds$min_grade()
-            grades_mean <- ds$grades_mean()
-            grades_median <- ds$grades_median()
-            grades_mode <- ds$grades_mode()
-            
-            #standard deviation
-            std_dev <- ds$grades_std_dev()
-            
-            # https://www.calculatorsoup.com/calculators/statistics/mean-median-mode.php
-            print(paste0(are_equal(max_grade, 100)))
-            print(paste0(are_equal(min_grade, 1)))
-            print(paste0(are_equal(grades_mean, 47.324)))
-            print(paste0(are_equal(grades_median, 46)))
-            print(paste0(are_equal(grades_mode, c(22))))
-            
-            # http://www.calculator.net/standard-deviation-calculator.html
-            are_equal(std_dev, 28.719105557103)
-            
-            # R compare with R built-in functions
-            max(random_grades$items)
-            min(random_grades$items)
-            mean(random_grades$items)
-            median(random_grades$items)
-            
-            # data <- c(93, 45, 75, 96, 80, 45, 2, 66, 75)
-            # Test function only
-            getmode <- function(v) {
-              uniqv <- unique(v)
-              uniqv[which.max(tabulate(match(v, uniqv)))]
-            }
-            
-            getmode(random_grades$items)
-            sd(random_grades$items)
-            
-            print(paste0(are_equal(max_grade, max(random_grades$items))))
-            print(paste0(are_equal(min_grade, min(random_grades$items))))
-            print(paste0(are_equal(grades_mean, mean(random_grades$items))))
-            print(paste0(are_equal(grades_median, median(random_grades$items))))
-            print(paste0(are_equal(grades_mode, getmode(random_grades$items))))
-          }
-        )
+  fields = list(dp = "data_provider", ds = "descriptive_statistics"),
+  methods = list(
+    constructor = function(){
+      dp <<- data_provider()
+      random_grades <- dp$get_random_numbers()
+      
+      ds <<- descriptive_statistics(grades = random_grades)
+      
+      max_grade <- ds$max_grade()
+      min_grade <- ds$min_grade()
+      grades_mean <- ds$grades_mean()
+      grades_median <- ds$grades_median()
+      grades_mode <- ds$grades_mode()
+      
+      #standard deviation
+      std_dev <- ds$grades_std_dev()
+      
+      cat("Comparing with manually calculated values\n")
+      cat("--------------------------------------\n")
+      
+      # https://www.calculatorsoup.com/calculators/statistics/mean-median-mode.php
+      print(paste0("max grade test: ", are_equal(max_grade, 100)))
+      print(paste0("min grade test: ", are_equal(min_grade, 1)))
+      print(paste0("grades mean test: ", are_equal(grades_mean, 47.324)))
+      print(paste0("grades median test: ", are_equal(grades_median, 46)))
+      print(paste0("grades mode test: ", are_equal(grades_mode, c(22))))
+      
+      # http://www.calculator.net/standard-deviation-calculator.html
+      print(paste0("Standard Deviation test: ",are_equal(std_dev, 28.719105557103)))
+      
+      # R compare with R built-in functions
+      
+      max(random_grades$items)
+      min(random_grades$items)
+      mean(random_grades$items)
+      median(random_grades$items)
+      
+      # data <- c(93, 45, 75, 96, 80, 45, 2, 66, 75)
+      # Test function only
+      get_mode <- function(v) {
+        uniqv <- unique(v)
+        uniqv[which.max(tabulate(match(v, uniqv)))]
+      }
+      
+      get_mode(random_grades$items)
+      sd(random_grades$items)
+      
+      cat("\nComparing with Built-in R functions\n")
+      cat("--------------------------------------\n")
+      print(paste0("are_equal(max_grade, max): ", are_equal(max_grade, max(random_grades$items))))
+      print(paste0("are_equal(min_grade, min): ", are_equal(min_grade, min(random_grades$items))))
+      print(paste0("are_equal(grades_mean, mean): ", are_equal(grades_mean, mean(random_grades$items))))
+      print(paste0("are_equal(grades_median, median): ", are_equal(grades_median, median(random_grades$items))))
+      print(paste0("are_equal(grades_mode, get_mode): ", are_equal(grades_mode, get_mode(random_grades$items))))
+      print(paste0("are_equal(std_dev, sd): ", are_equal(std_dev, sd(random_grades$items))))
+    }
+  )
 )
 
 main<-unit_testing()
@@ -2063,38 +2087,27 @@ main$constructor()
 - Output:
 
 \begin{lstlisting}
+Comparing with manually calculated values
+--------------------------------------
+[1] "max grade test: TRUE"
+[1] "min grade test: TRUE"
+[1] "grades mean test: TRUE"
+[1] "grades median test: TRUE"
+[1] "grades mode test: TRUE"
+[1] "Standard Deviation test: TRUE"
 
-[1] "TRUE"
-[1] "TRUE"
-[1] "TRUE"
-[1] "TRUE"
-[1] "TRUE"
-[1] "TRUE"
-[1] "TRUE"
-[1] "TRUE"
-[1] "TRUE"
-[1] "TRUE"
-
+Comparing with Built-in R functions
+--------------------------------------
+[1] "are_equal(max_grade, max): TRUE"
+[1] "are_equal(min_grade, min): TRUE"
+[1] "are_equal(grades_mean, mean): TRUE"
+[1] "are_equal(grades_median, median): TRUE"
+[1] "are_equal(grades_mode, get_mode): TRUE"
+[1] "are_equal(std_dev, sd): FALSE"
+> 
 \end{lstlisting}
 
-for each of the conditions:
-
-\begin{lstlisting}
-
-print(paste0(are_equal(max_grade, 100)))
-print(paste0(are_equal(min_grade, 1)))
-print(paste0(are_equal(grades_mean, 47.324)))
-print(paste0(are_equal(grades_median, 46)))
-print(paste0(are_equal(grades_mode, c(22))))
-...
-print(paste0(are_equal(max_grade, max(random_grades$items))))
-            print(paste0(are_equal(min_grade, min(random_grades$items))))
-            print(paste0(are_equal(grades_mean, mean(random_grades$items))))
-            print(paste0(are_equal(grades_median, median(random_grades$items))))
-            print(paste0(are_equal(grades_mode, getmode(random_grades$items))))
-
-\end{lstlisting}
-
+Notice that the last test "are\_equal(std\_dev, sd)" is returning FALSE as the built-in \gls{sd} is not the same as the project description.
 \newpage
 
 \section{Conclusion}
@@ -2111,25 +2124,26 @@ $$ v(G) = d + 1 $$
 
 where $ d $ is the number of predicates having an out-degree of 2.\newline 
 
-For the calculation of the complexity number of the methods that we have written, we first drew the control flow graph of each function, calculated the complexity number using the first formula, then we confirmed our results using the second formula with the number of predicates.\newline When a function was using another function that we wrote, we added the cyclomatic complexity of the remote function to the current one. For example, the calculation of the standard deviation uses the sum, the square root and the mean functions that we wrote.\newline
+To calculate the complexity number for all the methods that we have written, we first drew the control flow graph of each function, then calculated the complexity number using the $ e - n + 2 $ formula, and finally we confirmed our results using the $ d + 1 $.\newline\newline When a function was using another function that we wrote, we added the cyclomatic complexity of the remote function to the current one. For example, the calculation of the standard deviation uses the sum, the square root and the mean functions that we wrote: as a result, their complexity was added to the cyclomatic number calculation of the standard deviation function.\newline
 
 \begin{table}[ht!]
 \centering
-\begin{tabular}{lll}
-Method           & d & v(G) \\
-max\_grade       & 1 & 2    \\
-min\_grade       & 1 & 2    \\
-grades\_median   & 1 & 2    \\
-grades\_mean     & 1 & 2    \\
-sum\_custom      & 1 & 2    \\
-grades\_std\_dev & 4 & 5    \\
-grades\_mode     & 7 & 8    \\
-get\_max         & 2 & 3    \\
-count\_sort      & 3 & 4    \\
-sort             & 6 & 7    \\
-size             & 0 & 1    \\
-get\_random\_numbers & 3 & 4    \\
-square\_root     & 2 & 3   
+\begin{tabular}{|l|l|l|}
+\hline
+Method           & d & v(G) \\ \hline
+max\_grade       & 1 & 2    \\ \hline
+min\_grade       & 1 & 2    \\ \hline
+grades\_median   & 1 & 2    \\ \hline
+grades\_mean     & 1 & 2    \\ \hline
+sum\_custom      & 1 & 2    \\ \hline
+grades\_std\_dev & 4 & 5    \\ \hline
+grades\_mode     & 7 & 8    \\ \hline
+get\_max         & 2 & 3    \\ \hline
+count\_sort      & 3 & 4    \\ \hline
+sort             & 6 & 7    \\ \hline
+size             & 0 & 1    \\ \hline
+get\_random\_numbers & 3 & 4    \\ \hline
+square\_root     & 2 & 3    \\ \hline
 \end{tabular}
 \caption{Cyclomatic number for Descriptive-Statistics methods}
 \end{table}
@@ -2147,9 +2161,11 @@ All of the methods fall within the 1-10 range of cyclomatic number meaning that 
 \begin{figure}[h!]
 	\centering
 		\includegraphics[width=\textwidth]{classdiagram.png}
-	\caption{Class Diagram}
+	\caption{Class Diagram for Descriptive Statistics}
 	\label{fig:classdiagram}
 \end{figure}
+
+\newpage
 
 \subsection{Weighted Methods per Class}
 
@@ -2161,25 +2177,43 @@ where $ C_{i} $ is the complexity of the method $ M_{i} $.\newline
 
 We used the cyclomatic number as a measure of complexity for each method, given that weights are not normalized. Then, using the results found in the section 5, we have:
 
-$$ WMC = 1 * 1 + 2 * 5 + 3 * 2 + 4 * 2 + 5 * 1 + 7 * 1 + 8 * 1 $$ 
-$$ WMC = 45 $$
+\begin{equation}
+\begin{split}
+WMC_{Descriptive Statistics} = C(max\_grade) + C(min\_grade) + C(grades\_median) \\+ C(grades\_mean) + C(sum\_custom) + C(grades\_std\_dev) + C(grades\_mode)
+\nonumber
+\end{split}
+\end{equation}
+$$ WMC_{Descriptive Statistics} = 2 + 2 + 2 + 2 + 2 + 5 + 8 $$
+$$ WMC_{Descriptive Statistics} = 23 $$
 
-Therefore, the \gls{wmc} is of 45 for Descriptive Statistics.
+$$ WMC_{DS List} = C(get\_max) + C(count\_sort) + C(size) + C(sort) $$
+$$ WMC_{DS List} = 3 + 4 + 1 + 7 $$
+$$ WMC_{DS List} = 15 $$
+
+$$ WMC_{Data Provider} =  C(get\_random\_numbers) $$ 
+$$ WMC_{Data Provider} = 4 $$
+
+$$ WMC_{Math Util} = C(square\_root) $$ 
+$$ WMC_{Math Util} = 3 $$
+
+It does not make sense to calculate the \gls{wmc} for the Driver class since it simply calls functions from the Descriptive Statistics to display the results to the user.
+
+\newpage
 
 \subsection{Coupling Factor}
 
 We can calculate the \gls{cf} using the following formula:
 
-$$ CF = \frac{\sum\limits_{i=1}^{n} \sum\limits_{i=1}^{n} IsClient(C_{i},C_{j})}{n^2-n} $$
+$$ CF = \frac{\sum\limits_{i=1}^{n} \sum\limits_{j=1}^{n} IsClient(C_{i},C_{j})}{n^2-n} $$
 
 $ IsClient(C_{i},C_{j}) $ means that the class $ C_{i} $ has a relationship, either in the form of an attribute or a reference, with the class $ C_{j} $, that is not inheritance.\newline
 
 Based on the diagram above, we have:
 
 $$ CF = \frac{1+1+2+1}{5^2-5} $$
-$$ CF = 0.25 $$
+$$ CF = \frac{1}{4} $$
 
-Therefore, the Coupling Factor for Descriptive Statistics is equal to 0.25.
+Therefore, the Coupling Factor for Descriptive Statistics is equal to $ \frac{1}{4} $. It is a reasonably low value, meaning that Descriptive Statistics should be analyzable, modifiable and testable. 
 
 \newpage
 
@@ -2193,20 +2227,32 @@ where $ a $ is the number of attributes, $ m $ the number of methods and $ \mu(A
 
 We can calculate the \gls{lcom} for each of the classes represented in the class diagram above:
 
-$$ LCOM^{*}_{Descriptive Statistics} = \frac{\frac{1}{1}+xyz-7}{1-7} $$
-$$ LCOM^{*}_{Descriptive Statistics} =  $$
+$$ LCOM^{*}_{Descriptive Statistics} = \frac{\frac{1}{1}*(1+1+1+1+1+1)-7}{1-7} $$
+$$ LCOM^{*}_{Descriptive Statistics} = \frac{1}{6} $$
 
-$$ LCOM^{*}_{DS List} = \frac{\frac{1}{1}+xyz-4}{1-4} $$
-$$ LCOM^{*}_{DS List} =  $$
+$ LCOM^{*}_{Descriptive Statistics} $ is equal to $ \frac{1}{6} $, which a low value, meaning that the Descriptive Statistics class is highly cohesive.
 
-$$ LCOM^{*}_{Data Provider} = \frac{\frac{1}{1}+xyz-1}{1-1} $$
-$$ LCOM^{*}_{Data Provider} =  $$
+$$ LCOM^{*}_{DS List} = \frac{\frac{1}{1}*(1+1)-4}{1-4} $$
+$$ LCOM^{*}_{DS List} = \frac{2}{3} $$
 
-$$ LCOM^{*}_{Driver} = \frac{\frac{1}{2}+xyz-1}{1-1} $$
-$$ LCOM^{*}_{Driver} =  $$
+$ LCOM^{*}_{DS List} $ is equal to $ \frac{2}{3} $, which a moderately high value, meaning that the DS List class is slightly cohesive.
+\newpage
+$$ LCOM^{*}_{Data Provider} = \frac{\frac{1}{1}*(1)-1}{1-1} $$
+$$ LCOM^{*}_{Data Provider} = 0 $$
 
-$$ LCOM^{*}_{Math Util} = \frac{\frac{1}{0}+xyz-1}{1-1} $$
-$$ LCOM^{*}_{Math Util} =  $$
+$ LCOM^{*}_{Data Provider} $ is equal to 0 because we used a workaround for the specific case of a class having one method and accessing all of its attributes. This means that there is no lack of cohesion in methods.
+
+$$ LCOM^{*}_{Driver} = \frac{\frac{1}{2}*(1)-1}{1-1} $$
+$$ LCOM^{*}_{Driver} = 0 $$
+
+$ LCOM^{*}_{Driver} $ is equal to 0 because we used a workaround for the specific case of a class having one method and accessing all of its attributes. This means that there is no lack of cohesion in methods.
+
+$$ LCOM^{*}_{Math Util} = \frac{\frac{1}{0}*0-1}{1-1} $$
+$$ LCOM^{*}_{Math Util} = 0 $$
+
+$ LCOM^{*}_{Math Util} $ is equal to 0 because we used a workaround for the specific case of a class not having any attribute and having one method. This means that there is no lack of cohesion in methods.
+
+Unfortunately, we were not able to find tools that supports R language to calculate those metrics. Such tools exist for Java, but we were unable to find equivalent for R language.
 
 \newpage
 
@@ -2216,11 +2262,87 @@ $$ LCOM^{*}_{Math Util} =  $$
 
 \subsubsection{Manual counting}
 
+We have considered every statement except the blank and commented lines as physical SLOC.
+
+We found the following results:
+
+\begin{table}[ht!]
+\centering
+\begin{tabular}{|l|l|}
+\hline
+Source Files              & Physical SLOC \\ \hline
+data\_provider.r          & 12            \\ \hline
+descriptive\_statistics.r & 83            \\ \hline
+driver.r                  & 26            \\ \hline
+ds\_list.r                & 44            \\ \hline
+math\_util.r              & 17            \\ \hline
+Sum                       & 182           \\ \hline
+\end{tabular}
+\caption{Physical \gls{sloc} count manually}
+\end{table}
+
 \subsubsection{Using a tool}
+
+We used \gls{cloc}, an open-source tool written by AlDanial \cite{cloc} and compatible with R to perform the physical \gls{sloc} count. The results for the main classes are as follows:
+
+\begin{figure}[h!]
+	\centering
+		\includegraphics[width=\textwidth]{cloc.png}
+	\caption{Physical \gls{sloc} count with CLOC}
+	\label{fig:cloc}
+\end{figure}
+
+Therefore, the total physical \gls{sloc} for Descriptive Statistics is equal to 182. One can see that we found the same result using the \gls{cloc} tool and manual counting.
+
+\newpage
 
 \subsection{Logical SLOC}
 
 \subsubsection{Manual counting}
+
+We have considered every executable statement, that is the smallest unit of work, as logical SLOC. This means we excluded lines solely composed of a closing parentheses.
+
+We found the following results:
+
+\begin{table}[ht!]
+\centering
+\begin{tabular}{|l|l|}
+\hline
+Source Files              & Logical SLOC  \\ \hline
+data\_provider.r          & 9            \\ \hline
+descriptive\_statistics.r & 63            \\ \hline
+driver.r                  & 23            \\ \hline
+ds\_list.r                & 33            \\ \hline
+math\_util.r              & 13            \\ \hline
+Sum                       & 141           \\ \hline
+\end{tabular}
+\caption{Logical \gls{sloc} count manually}
+\end{table}
+
+\subsubsection{Using a tool}
+
+We used SGTools \cite{sgtools}, a collection of R functions written by Sebastian Gibb, that contains a logical \gls{sloc} calculator.
+
+\begin{figure}[h!]
+	\centering
+		\includegraphics[width=\textwidth]{logicalsloc.png}
+	\caption{Logical \gls{sloc} count with SGTools}
+	\label{fig:logicalsloc}
+\end{figure}
+
+Therefore, the total logical \gls{sloc} for Descriptive Statistics is equal to 142.\newline
+
+\newpage
+The difference between the manual and tool calculation is coming from the way we consider closing parentheses: the tool regroups all the closing parentheses in a single line and considers them as one executable statement whereas manual counting does not. Then, it also considers the class declaration and field declaration as a single line. For example, here is how the tool sees the data\_provider class:
+
+\begin{figure}[h!]
+	\centering
+		\includegraphics[width=\textwidth]{toolvscode.png}
+	\caption{On the left, the actual code for the data\_provider class; on the right, the R script (tool) output for the class}
+	\label{fig:toolvscode}
+\end{figure}
+
+Counting the number of lines displayed by the tool gives 7 whereas we found 9.
 
 \newpage
 
@@ -2228,7 +2350,44 @@ $$ LCOM^{*}_{Math Util} =  $$
 
 \subsection{Using Scatter Plot}
 
+\begin{figure}[h!]
+	\centering
+		\includegraphics[width=\textwidth]{cor_graph.png}
+	\caption{Scatter Plot graph between the logical SLOC and WMC}
+	\label{fig:cor_graph}
+\end{figure}
+
+From this scatter plot, we can conclude that there is a correlation between the logical SLOC and WMC. As the WMC increases, so does the logical SLOC.
+
+\newpage
+
 \subsection{Using a Correlation Coefficient}
+
+We used the Spearman's rank correlation coefficient to calculate a correlation coefficient between the logical SLOC and WMC.\newline
+
+\begin{table}[ht!]
+\centering
+\begin{tabular}{|l|l|l|l|l|l|l|}
+\hline
+Class                   & Logical SLOC & Rank & WMC & Rank & d  & $ d^{2} $ \\ \hline
+data\_provider          & 9            & 1    & 4   & 2    & -1 & 1                    \\ \hline
+descriptive\_statistics & 63           & 4    & 23  & 4    & 0  & 0                    \\ \hline
+ds\_list                & 33           & 3    & 15  & 3    & 0  & 0                    \\ \hline
+math\_util              & 13           & 2    & 3   & 1    & 1  & 1                    \\ \hline
+\end{tabular}
+\caption{A summary of statistics for calculating the $ r_{s} $}
+\end{table}
+
+The formula for Spearman's rank correlation is the following:
+
+$$ r_{s} = 1 - \frac{6\sum\limits_{i=1}^{n} d_{i}^{2}}{n^{3} - n} $$ 
+$$ r_{s} = 1 - \frac{6\sum\limits_{i=1}^{4} d_{i}^{2}}{4^{3} - 4} $$ 
+$$ r_{s} = 1 - \frac{6*(1^{2}+1^{2}+0+0)}{4^{3} - 4} $$
+$$ r_{s} = 1 - \frac{12}{60} $$
+$$ r_{s} = \frac{4}{5} $$
+$$ r_{s} = 0.8 $$
+
+Therefore, we have a positive correlation between the values of the WMC metric and the SLOC of a class.
 
 \newpage
 
